@@ -3,7 +3,7 @@ package tpTraficInfo;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface TraficInfo extends Remote
+public interface ServiceInfo extends Remote
 {
 
 	

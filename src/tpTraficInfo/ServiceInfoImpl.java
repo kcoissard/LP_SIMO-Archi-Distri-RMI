@@ -3,9 +3,16 @@ package tpTraficInfo;
 import java.util.HashMap;
 import java.rmi.RemoteException;
 
-public class TraficInfoImpl implements TraficInfo
+public class ServiceInfoImpl implements ServiceInfo
 {
 	
+	public void abonner(Abonne a){
+		
+	}
+	public void desabonner(Abonne a){
+		
+	}
+
 	
 	
 	/*

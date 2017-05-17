@@ -9,8 +9,11 @@ public class ClientTraficInfo
 	{
 		System.setProperty("java.rmi.server.hostname", "localhost");
 
-		Registry registry = LocateRegistry.getRegistry("localhost", 3000);
-		TraficInfo service = (TraficInfo) registry.lookup("TraficInfo");
+		Registry registryAbonne = LocateRegistry.getRegistry("localhost", 3000);
+		Abonne abonne = (Abonne) registryAbonne.lookup("Abonne");
+		
+		Registry registryServiceInfo = LocateRegistry.getRegistry("localhost", 3000);
+		ServiceInfo service = (ServiceInfo) registryServiceInfo.lookup("TraficInfo");
 		//il existe une facon plus classe (en une ligne)
 
 		/*

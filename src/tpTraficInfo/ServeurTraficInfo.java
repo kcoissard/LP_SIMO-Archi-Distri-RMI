@@ -10,8 +10,8 @@ public class ServeurTraficInfo
 	{
 		System.setProperty("java.rmi.server.hostname", "localhost");
 
-		TraficInfoImpl service = new TraficInfoImpl();
-		TraficInfo stub = (TraficInfo) UnicastRemoteObject.exportObject(service, 0);
+		ServiceInfoImpl service = new ServiceInfoImpl();
+		ServiceInfo stub = (ServiceInfo) UnicastRemoteObject.exportObject(service, 0);
 
 		Registry registry = LocateRegistry.createRegistry(3000);  
 		registry.bind("ServiceMeteo", stub);
