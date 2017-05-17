@@ -11,10 +11,6 @@ public class ClientTraficInfo
 
 		Registry registryAbonne = LocateRegistry.getRegistry("localhost", 3000);
 		Abonne abonne = (Abonne) registryAbonne.lookup("Abonne");
-		
-		Registry registryServiceInfo = LocateRegistry.getRegistry("localhost", 3000);
-		ServiceInfo service = (ServiceInfo) registryServiceInfo.lookup("TraficInfo");
-		//il existe une facon plus classe (en une ligne)
 
 		/*
 		String[] villes = service.listerVilles();  

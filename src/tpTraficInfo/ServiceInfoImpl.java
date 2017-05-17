@@ -1,72 +1,51 @@
 package tpTraficInfo;
 
 import java.util.HashMap;
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public class ServiceInfoImpl implements ServiceInfo
+public class ServiceInfoImpl implements ServiceInfo, Remote
 {
+	private static final HashMap<Abonne, Boolean> listeAbonnes;
 	
-	public void abonner(Abonne a){
-		
-	}
-	public void desabonner(Abonne a){
-		
-	}
-
-	
-	
-	/*
-	private static final HashMap<String,String> conditions;
-	
-	private static final HashMap<String,Integer> temperatures;
-	
-	private static final String[] villes = {"Grenoble", "Lyon", "Lille", "Paris", "Brest"};
+	private static final String[] nomsAbonnes = {"Abonne1", "Abonne2", "Abonne3", "Abonne4", "Abonne5"};
 	
 	private static int compteur = 0;
 
 	static
 	{
-		conditions = new HashMap<String,String>();
-		conditions.put("Grenoble","soleil");
-		conditions.put("Lille","pluie");
-		conditions.put("Paris","nuages");
-		conditions.put("Brest","vent");
-		conditions.put("Lyon","eclaircies");
-
-		temperatures = new HashMap<String,Integer>();
-		temperatures.put("Grenoble", 25);
-		temperatures.put("Lille", 12);
-		temperatures.put("Paris", 20);
-		temperatures.put("Brest", 18);
-		temperatures.put("Lyon", 22);  
+		listeAbonnes = new HashMap<Abonne,Boolean>();
 	}
 
-	public int donnerTemperature(String ville) throws RemoteException
-	{
-		int temperature = 0;
-		if (temperatures.containsKey(ville))
+	public void abonner(Abonne a){
+		boolean estAbonne=false;
+		
+		if (!listeAbonnes.containsKey(a))
 		{
-			temperature = temperatures.get(ville);
+			listeAbonnes.put(a,true);
+		}else{
+			estAbonne = listeAbonnes.get(a);
+			if(estAbonne==false){
+				listeAbonnes.replace(a, true);
+			}else{
+				listeAbonnes.replace(a, false);
+			}
 		}
-		System.out.println("requete " + (compteur++) + " : donnerTemperature()");
-		return temperature;
+		System.out.println("requete " + (compteur++) + " : abonner()");
 	}
-
-	public String donnerConditions(String ville) throws RemoteException
-	{
-		String condition = null;
-		if (conditions.containsKey(ville))
+	
+	public void desabonner(Abonne a){
+		boolean estAbonne=false;
+		
+		if (!listeAbonnes.containsKey(a))
 		{
-			condition = conditions.get(ville);
+			listeAbonnes.put(a,false);
+		}else{
+			estAbonne = listeAbonnes.get(a);
+			if(estAbonne==true){
+				listeAbonnes.replace(a, false);
+			}
 		}
-		System.out.println("requete " + (compteur++) + " : donnerConditions()");
-		return condition; 
+		System.out.println("requete " + (compteur++) + " : desabonner()");
 	}
-
-	public String[] listerVilles() throws RemoteException
-	{
-		System.out.println("requete " + (compteur++) + " : listerVilles()");
-		return villes;
-	}
-	*/
 }

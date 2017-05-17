@@ -1,6 +1,7 @@
 package tpTraficInfo;
 
 import java.rmi.registry.Registry;
+import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -10,13 +11,14 @@ public class ServeurTraficInfo
 	{
 		System.setProperty("java.rmi.server.hostname", "localhost");
 
-		ServiceInfoImpl service = new ServiceInfoImpl();
-		ServiceInfo stub = (ServiceInfo) UnicastRemoteObject.exportObject(service, 0);
+		ServiceInfoImpl serviceInfoImpl = new ServiceInfoImpl();
+		ServiceInfo stub = (ServiceInfo) UnicastRemoteObject.exportObject(serviceInfoImpl, 0);
 
-		Registry registry = LocateRegistry.createRegistry(3000);  
-		registry.bind("ServiceMeteo", stub);
+		Registry registryServiceInfo = LocateRegistry.createRegistry(2000);
+		ServiceInfo serviceInfo = (ServiceInfo) registryServiceInfo.lookup("InfoTrafic");
+		//registry.bind("ServiceInfo", stub);
 
-		System.out.println("Service enregistre");
+		System.out.println("Service info enregistre");
 		
 		Thread.sleep(Long.MAX_VALUE);
 	}
