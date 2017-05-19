@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public class ServiceInfoImpl implements ServiceInfo, Remote
+public class ServiceInfoImpl extends Thread implements ServiceInfo
 {
 	private static final HashMap<Abonne, Boolean> listeAbonnes;
 	
@@ -18,34 +18,46 @@ public class ServiceInfoImpl implements ServiceInfo, Remote
 	}
 
 	public void abonner(Abonne a){
+		System.out.println("DEBUT --- requete " + (compteur++) + " : abonner()");
+		
 		boolean estAbonne=false;
 		
+		//si l'abonné n'éxiste pas on l'ajout à la liste et on l'abonne
 		if (!listeAbonnes.containsKey(a))
 		{
 			listeAbonnes.put(a,true);
+			System.out.println("Création de l'abonné et abonnement");
+		//sinon on remplace son abonnement par true
 		}else{
 			estAbonne = listeAbonnes.get(a);
 			if(estAbonne==false){
 				listeAbonnes.replace(a, true);
+				System.out.println("Abonnement reussi");
 			}else{
 				listeAbonnes.replace(a, false);
+				System.out.println("Desabonnement (deja abonne)");
 			}
 		}
-		System.out.println("requete " + (compteur++) + " : abonner()");
+		System.out.println("FIN --- requete " + (compteur) + " : abonner()");
 	}
 	
 	public void desabonner(Abonne a){
+		System.out.println("DEBUT --- requete " + (compteur++) + " : desabonner()");
 		boolean estAbonne=false;
 		
 		if (!listeAbonnes.containsKey(a))
 		{
 			listeAbonnes.put(a,false);
+			System.out.println("Ajout a la liste en mode desabonne");
 		}else{
 			estAbonne = listeAbonnes.get(a);
 			if(estAbonne==true){
 				listeAbonnes.replace(a, false);
+				System.out.println("Desabonnement reussi");
+			}else{
+				System.out.println("Personne deja desabonne");
 			}
 		}
-		System.out.println("requete " + (compteur++) + " : desabonner()");
+		System.out.println("FIN --- requete " + (compteur) + " : desabonner()");
 	}
 }

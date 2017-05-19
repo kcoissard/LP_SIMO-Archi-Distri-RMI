@@ -9,7 +9,7 @@ public class InfoTrafic {
 		
 	private int numTrain=-1;
 	private String etatTrain="Etat du train non defini";
-	private String natureProbleme="Nature du probleme non definie";
+	private String natureProbleme=ETAT_NORMAL;
 	
 	public int getNumTrain() {
 		return numTrain;

@@ -1,8 +1,9 @@
 package tpTraficInfo;
 
+import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface ServiceInfo
+public interface ServiceInfo extends Remote
 {
 	
 	/*
@@ -12,10 +13,10 @@ public interface ServiceInfo
 	*/
 
 	public default void abonner(Abonne a){
-		
+		System.out.println("Utilisation de la méthode abonner de l'interface ServiceInfo :");
 	}
 	public default void desabonner(Abonne a){
-		
+		System.out.println("Utilisation de la méthode desabonner de l'interface ServiceInfo :");
 	}
 	
 	
